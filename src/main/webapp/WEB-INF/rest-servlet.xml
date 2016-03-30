@@ -1,0 +1,26 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc        
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<context:component-scan base-package="cz.uhk.MasterNodeServer.*" />
+	<mvc:annotation-driven />
+
+	<bean id="valueService" class="cz.uhk.MasterNodeServer.entity.services.ValueService" />
+	<bean id="valueDAO" class="cz.uhk.MasterNodeServer.entity.dao.ValueDAO" />
+	<bean id="nodeService" class="cz.uhk.MasterNodeServer.entity.services.NodeService" />
+	<bean id="nodeDAO" class="cz.uhk.MasterNodeServer.entity.dao.NodeDAO" />
+	<bean id="sensorService" class="cz.uhk.MasterNodeServer.entity.services.SensorService" />
+	<bean id="sensorDAO" class="cz.uhk.MasterNodeServer.entity.dao.SensorDAO" />
+	<bean id="relayService" class="cz.uhk.MasterNodeServer.entity.services.RelayService" />
+	<bean id="relayDAO" class="cz.uhk.MasterNodeServer.entity.dao.RelayDAO" />
+
+
+</beans>
