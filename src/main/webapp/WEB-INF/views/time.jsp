@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:out value="relay with identifier ${name} changed state to ${state} in "></c:out> 
+	<c:out value="relay with identifier ${name} say: ${message} at"></c:out> 
 	<c:out value="${serverTime}"></c:out>
 </body>
 </html>

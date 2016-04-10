@@ -1,17 +1,21 @@
 package cz.uhk.MasterNodeServer.entity.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cz.uhk.MasterNodeServer.entity.Sensor;
+import cz.uhk.MasterNodeServer.entity.Value;
 
 @Service
 public class SensorDAO{
@@ -31,9 +35,17 @@ public class SensorDAO{
 	public List<Sensor> findAllSensors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
+/**		
+		Calendar calendar = Calendar.getInstance();
+		Date endDate = calendar.getTime();
+        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE)-10);
+		Date startDate = calendar.getTime();
+**/		
+		TypedQuery<Sensor> q = em.createQuery("SELECT o FROM Sensor o", Sensor.class);
+		//q.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
+		//q.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
 
-		List<Sensor> s = em.createQuery("SELECT o FROM Sensor o", Sensor.class).getResultList();
-
+		List<Sensor> s = q.getResultList();
 		em.close();
 		return s;
 	}

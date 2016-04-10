@@ -12,6 +12,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import static javax.persistence.FetchType.LAZY;
 
 /**
@@ -32,8 +34,9 @@ public class Value implements Serializable {
 	private float value;
 
 	//bi-directional many-to-one association to Sensor
-	@ManyToOne (fetch=LAZY)
+	@ManyToOne (fetch=FetchType.EAGER)
 	@JoinColumn(name="sensor_id")
+	@JsonManagedReference
 	private Sensor sensor;
 
 	public Value() {

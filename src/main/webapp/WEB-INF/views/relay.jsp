@@ -42,7 +42,7 @@ function loadDoc(name,state) {
   	 <p id="demo"></p>
      <p>${item.name}</p> <label class="switch switch-green">
    
-      <input type="checkbox" id="${item.identifier}" class="switch-input" checked>
+      <input type="checkbox" id="${item.identifier}" class="switch-input" ${item.state ? "checked" : "" }>
      
       <span class="switch-label" data-on="On" data-off="Off"></span>
       <span class="switch-handle"></span>

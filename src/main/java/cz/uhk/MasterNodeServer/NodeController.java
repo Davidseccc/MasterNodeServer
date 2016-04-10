@@ -52,16 +52,17 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 	@RequestMapping(value = "hi",method = RequestMethod.GET)
 	public String home3(Model model) {
-		String serverName = "localhost";
+		String serverName = "192.168.0.163";
 	      int port = Integer.parseInt("9999");
-		 String receivedMessage = setupServer(model,serverName,port );
+	      String message = "RELAY_ON";
+		 String receivedMessage = setupServer(model,serverName,port, message);
 	      model.addAttribute("server", serverName);
 	      model.addAttribute("message", receivedMessage);
 
 		return "socket/message";
 	}
 
-	private String setupServer(Model model, String serverName,int port ) {
+	private String setupServer(Model model, String serverName,int port, String message ) {
 		String receivedMessage = null;
 	      try
 	      {
@@ -74,7 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	         DataOutputStream out = new DataOutputStream(outToServer);
 	         //out.writeUTF("Hi, What's the Date Today?"
 	         //             + client.getLocalSocketAddress());
-	         out.writeUTF("Hi, What's the Date Today?");
+	         out.writeUTF(message);
 	         InputStream inFromServer = client.getInputStream();
 	         DataInputStream in =
 	                        new DataInputStream(inFromServer);

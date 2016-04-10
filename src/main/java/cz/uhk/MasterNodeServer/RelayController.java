@@ -1,5 +1,11 @@
 package cz.uhk.MasterNodeServer;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,10 +64,49 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		
 		String formattedDate = dateFormat.format(date);
 		
-		model.addAttribute("serverTime", formattedDate );
-		model.addAttribute("name", name );
-		model.addAttribute("state", state );
+		
+		String serverName = "192.168.0.163";
+	      int port = Integer.parseInt("9999");
+	      String message;
+	      if (state){message = "RELAY_ON";}
+	      else{message = "RELAY_OFF";}
+		 String receivedMessage = setupServer(model,serverName,port, message);
+	      model.addAttribute("server", serverName);
+	      model.addAttribute("message", receivedMessage);
+		
+	      model.addAttribute("serverTime", formattedDate );
+	      model.addAttribute("name", name );
+	      model.addAttribute("state", state );
 		return "time";
+	}
+	
+	private String setupServer(Model model, String serverName,int port, String message ) {
+		String receivedMessage = null;
+	      try
+	      {
+	         System.out.println("Connecting to " + serverName +
+			 " on port " + port);
+	         Socket client = new Socket(serverName, port);
+	         System.out.println("Just connected to " 
+			 + client.getRemoteSocketAddress());
+	         OutputStream outToServer = client.getOutputStream();
+	         DataOutputStream out = new DataOutputStream(outToServer);
+	         //out.writeUTF("Hi, What's the Date Today?"
+	         //             + client.getLocalSocketAddress());
+	         out.writeUTF(message);
+	         InputStream inFromServer = client.getInputStream();
+	         DataInputStream in =
+	                        new DataInputStream(inFromServer);
+	         receivedMessage = in.readUTF();
+	         System.out.println("Server says " + receivedMessage);
+	         
+
+	         client.close();
+	      }catch(IOException e)
+	      {
+	         e.printStackTrace();
+	      }
+	      return receivedMessage;
 	}
 	
 	@RequestMapping( method = RequestMethod.GET)
