@@ -36,12 +36,12 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 
 	@RequestMapping(value = "/", params="format=json", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Value> home() {
-		return new ArrayList<Value>(valueService.findValueEntries(0, 8));
+		return new ArrayList<Value>(valueService.findValueEntries(0, 7));
 	}
 	
-	@RequestMapping(value = "/sensor", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Value> home2(@RequestParam(value="name", defaultValue="01") String name) {
-		return new ArrayList<Value>(valueService.findValueEntriesbySensor(name, 0, 144));
+	@RequestMapping(value = "/sensor/", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Value> home2(@RequestParam(value="sensor", defaultValue="ds_01") String sensor) {
+		return new ArrayList<Value>(valueService.findValueEntriesbySensor(sensor, 0, 8));
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)

@@ -51,7 +51,6 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public String home(Model model) {
-		System.out.println("relayService");
 		List<Relay> valueList = relayService.findAllSensors();
 			model.addAttribute("valueList", valueList);
 		return "relay";
@@ -63,7 +62,9 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		
+		//Relay r = relayService.findSensorbyName(name);
+		//System.out.println(r.toString());
+		//relayService.updateSensor(r);
 		
 		String serverName = "192.168.0.163";
 	      int port = Integer.parseInt("9999");

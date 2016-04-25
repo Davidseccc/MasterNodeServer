@@ -5,7 +5,6 @@
 <title>API</title>
 </head>
 <body>
-	<h1>Hello</h1>
 
 	<div class="container center-block">
 		<div class="panel panel-default col-sm-10">
@@ -49,7 +48,19 @@
 						</div>
 					</div>
 				</div>
-
+				
+								<div>
+					<div class="row alert-info img-rounded"
+						style="margin: 3px 0px 3px 0px; padding-top: 6px">
+						<div class="col-sm-4 col-sm-push-8">
+							<p>Obtain a list of sensor Values</p>
+						</div>
+						<div class="col-sm-8 col-sm-pull-4">
+							<kbd class="btn-success">GET</kbd>
+							<a href=./value/sensor/?sensor=ds_garaz>/value/sensor/?sensor="identifier"</a>
+						</div>
+					</div>
+				</div>
 				<div>
 					<div class="row alert-info img-rounded"
 						style="margin: 3px 0px 3px 0px; padding-top: 6px">

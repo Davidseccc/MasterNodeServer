@@ -55,7 +55,7 @@ public class ValueDAO{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
 
-		List<Value> v = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id", Value.class).setFirstResult(firstResult)
+		List<Value> v = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id ,s.name", Value.class).setFirstResult(firstResult)
 				.setMaxResults(maxResults).getResultList();
 		em.close();
 		return v;
@@ -130,20 +130,13 @@ public class ValueDAO{
 	public List<Value> findValueEntriesbySensor(String sensor, int firstResult, int maxResults) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager(); 
-		
-		Calendar calendar = Calendar.getInstance();
-		Date endDate = calendar.getTime();
-        calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY)-24);
-		Date startDate = calendar.getTime();
 
 		
 		if (sensor == null)
 			throw new IllegalArgumentException("The Sensor argument is required");
-		TypedQuery<Value> q = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s WHERE s.identifier = :sensor AND o.date BETWEEN :startDate AND :endDate  ORDER BY o.date ASC", Value.class)
+		TypedQuery<Value> q = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s WHERE s.identifier = :sensor order by o.date desc", Value.class)
 				.setFirstResult(firstResult).setMaxResults(maxResults);
 		q.setParameter("sensor", sensor);
-		q.setParameter("startDate", startDate);
-		q.setParameter("endDate", endDate);
 
 		List<Value> values = q.getResultList();
 		em.close();
