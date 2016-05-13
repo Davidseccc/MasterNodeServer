@@ -35,17 +35,8 @@ public class SensorDAO{
 	public List<Sensor> findAllSensors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
-/**		
-		Calendar calendar = Calendar.getInstance();
-		Date endDate = calendar.getTime();
-        calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE)-10);
-		Date startDate = calendar.getTime();
-**/		
-		TypedQuery<Sensor> q = em.createQuery("SELECT o FROM Sensor o", Sensor.class);
-		//q.setParameter("startDate", startDate, TemporalType.TIMESTAMP);
-		//q.setParameter("endDate", endDate, TemporalType.TIMESTAMP);
 
-		List<Sensor> s = q.getResultList();
+		List<Sensor> s = em.createQuery("SELECT o FROM Sensor o", Sensor.class).getResultList();
 		em.close();
 		return s;
 	}

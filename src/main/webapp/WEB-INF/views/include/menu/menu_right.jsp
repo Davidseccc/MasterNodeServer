@@ -8,8 +8,11 @@
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="search">
+            <form action="http://www.google.cz/search" method="get">
+              <input id="SearchTextField" name="sitesearch" value="doma.vid91.eu" type="hidden" />
+              <input class="mdl-textfield__input" type="text" name="q" id="search">
               <label class="mdl-textfield__label" for="search">Enter your query...</label>
+              </form>
             </div>
           </div>
           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">

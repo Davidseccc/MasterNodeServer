@@ -52,13 +52,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="resources/css/material.css">
-    <link href="resources/css/jquery.circliful.css" rel="stylesheet" type="text/css" />
-
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    
-
-    
-  
   </head>
   <body>
 
@@ -92,7 +85,8 @@
 	
 			<div class="mdl-grid">
 			<c:forEach var="item" items="${valueList}">
-				<div class="mdl-cell mdl-cell--3-col mdl-cell--6-col-tablet"">
+				<div class="mdl-cell mdl-cell--3-col mdl-cell--6-col-tablet" style="margin: auto; text-align: center;">
+				
 				<a href="value/?name=${item.sensor.identifier }" class="thumbnail">
 						<h6 class="" >${item.sensor.name}</h6> <img src="resources/img/${item.sensor.name}.png"
 						alt="${item.sensor.name}" style="width: auto; height: 60px">
@@ -107,10 +101,10 @@
           </div>
           <div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
             	<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-             	 <use xlink:href="#chart" />
+             	 <use xlink:href="#chart1" />
             	</svg>
             	<svg fill="currentColor" viewBox="0 0 500 250" class="demo-graph">
-            	  <use xlink:href="#chart" />
+            	  <use xlink:href="#chart2" />
            		</svg>
                       </div>
           <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
@@ -154,6 +148,12 @@
                       <span class="mdl-checkbox__label">Objects viewed</span>
                     </label>
                   </li>
+                  <li>
+<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+  <input type="checkbox" id="switch-2" class="mdl-switch__input">
+  <span class="mdl-switch__label"></span>
+</label>
+                  </li>
                 </ul>
               </div>
               <div class="mdl-card__actions mdl-card--border">
@@ -170,37 +170,105 @@
       </svg>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
         <defs>
-          <g id="chart">
+          <g id="chart1">
             <g id="Gridlines">
-              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="27.3" x2="468.3" y2="27.3" />
-              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="66.7" x2="468.3" y2="66.7" />
-              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="105.3" x2="468.3" y2="105.3" />
-              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="144.7" x2="468.3" y2="144.7" />
-              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="184.3" x2="468.3" y2="184.3" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="25" x2="468.3" y2="25" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="50" x2="468.3" y2="50" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="75" x2="468.3" y2="75" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="100" x2="468.3" y2="100" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="125" x2="468.3" y2="125" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="150" x2="468.3" y2="150" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="175" x2="468.3" y2="175" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="200" x2="468.3" y2="200" />
+              
             </g>
             <g id="Numbers">
-              <text transform="matrix(1 0 0 1 485 29.3333)" fill="#888888" font-family="'Roboto'" font-size="9">500</text>
-              <text transform="matrix(1 0 0 1 485 69)" fill="#888888" font-family="'Roboto'" font-size="9">400</text>
-              <text transform="matrix(1 0 0 1 485 109.3333)" fill="#888888" font-family="'Roboto'" font-size="9">300</text>
-              <text transform="matrix(1 0 0 1 485 149)" fill="#888888" font-family="'Roboto'" font-size="9">200</text>
-              <text transform="matrix(1 0 0 1 485 188.3333)" fill="#888888" font-family="'Roboto'" font-size="9">100</text>
+              <text transform="matrix(1 0 0 1 485 25)" fill="#888888" font-family="'Roboto'" font-size="9">50</text>
+              <text transform="matrix(1 0 0 1 485 50)" fill="#888888" font-family="'Roboto'" font-size="9">40</text>
+              <text transform="matrix(1 0 0 1 485 75)" fill="#888888" font-family="'Roboto'" font-size="9">30</text>
+              <text transform="matrix(1 0 0 1 485 100)" fill="#888888" font-family="'Roboto'" font-size="9">20</text>
+              <text transform="matrix(1 0 0 1 485 125)" fill="#888888" font-family="'Roboto'" font-size="9">10</text>
+              <text transform="matrix(1 0 0 1 485 150)" fill="#888888" font-family="'Roboto'" font-size="9">0</text>
+              <text transform="matrix(1 0 0 1 485 175)" fill="#888888" font-family="'Roboto'" font-size="9">-10</text>
+              <text transform="matrix(1 0 0 1 485 200)" fill="#888888" font-family="'Roboto'" font-size="9">-20</text>
+              
               <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
               <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
-              <text transform="matrix(1 0 0 1 154.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
-              <text transform="matrix(1 0 0 1 232.1667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
-              <text transform="matrix(1 0 0 1 309 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
-              <text transform="matrix(1 0 0 1 386.6667 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
-              <text transform="matrix(1 0 0 1 464.3333 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
+              <text transform="matrix(1 0 0 1 156 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
+              <text transform="matrix(1 0 0 1 234 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
+              <text transform="matrix(1 0 0 1 312 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
+              <text transform="matrix(1 0 0 1 390 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
+              <text transform="matrix(1 0 0 1 468 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
             </g>
             <g id="Layer_5">
-              <polygon opacity="0.36" stroke-miterlimit="10" points="0,223.3 48,138.5 154.7,169 211,88.5
-              294.5,80.5 380,165.2 437,75.5 469.5,223.3 	"/>
+              <polygon opacity="0.36" stroke-miterlimit="10" points="
+              0,222.7 
+            <c:forEach var="value" items="${dsList}" varStatus="i"> ${i.index * 78},${150-(value * 2.5)}</c:forEach>
+              468,222.7	
+              "/>
             </g>
+
             <g id="Layer_4">
-              <polygon stroke-miterlimit="10" points="469.3,222.7 1,222.7 48.7,166.7 155.7,188.3 212,132.7
-              296.7,128 380.7,184.3 436.7,125 	"/>
+              <polygon opacity="1" stroke-miterlimit="10" points="
+  				0,222.7 
+            <c:forEach var="value" items="${dhtList}" varStatus="i"> ${i.index * 78},${150-(value * 2.5)}</c:forEach>
+              468,222.7	
+              "/>
             </g>
-          </g>
+         </g>
+         <g id="chart2">
+            <g id="Gridlines">
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="25" x2="468.3" y2="25" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="50" x2="468.3" y2="50" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="75" x2="468.3" y2="75" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="100" x2="468.3" y2="100" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="125" x2="468.3" y2="125" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="150" x2="468.3" y2="150" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="175" x2="468.3" y2="175" />
+              <line fill="#888888" stroke="#888888" stroke-miterlimit="10" x1="0" y1="200" x2="468.3" y2="200" />
+              
+            </g>
+            <g id="Numbers">
+              <text transform="matrix(1 0 0 1 485 25)" fill="#888888" font-family="'Roboto'" font-size="9">50</text>
+              <text transform="matrix(1 0 0 1 485 50)" fill="#888888" font-family="'Roboto'" font-size="9">40</text>
+              <text transform="matrix(1 0 0 1 485 75)" fill="#888888" font-family="'Roboto'" font-size="9">30</text>
+              <text transform="matrix(1 0 0 1 485 100)" fill="#888888" font-family="'Roboto'" font-size="9">20</text>
+              <text transform="matrix(1 0 0 1 485 125)" fill="#888888" font-family="'Roboto'" font-size="9">10</text>
+              <text transform="matrix(1 0 0 1 485 150)" fill="#888888" font-family="'Roboto'" font-size="9">0</text>
+              <text transform="matrix(1 0 0 1 485 175)" fill="#888888" font-family="'Roboto'" font-size="9">-10</text>
+              <text transform="matrix(1 0 0 1 485 200)" fill="#888888" font-family="'Roboto'" font-size="9">-20</text>
+              
+              <text transform="matrix(1 0 0 1 0 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">1</text>
+              <text transform="matrix(1 0 0 1 78 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">2</text>
+              <text transform="matrix(1 0 0 1 156 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">3</text>
+              <text transform="matrix(1 0 0 1 234 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">4</text>
+              <text transform="matrix(1 0 0 1 312 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">5</text>
+              <text transform="matrix(1 0 0 1 390 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">6</text>
+              <text transform="matrix(1 0 0 1 468 249.0003)" fill="#888888" font-family="'Roboto'" font-size="9">7</text>
+            </g>
+            <g id="Layer_5">
+              <polygon opacity="0.26" stroke-miterlimit="10" points="
+              0,222.7 
+            <c:forEach var="value" items="${cpu02}" varStatus="i"> ${i.index * 78},${150-(value * 2.5)}</c:forEach>
+              468,222.7	
+              "/>
+            </g>
+
+            <g id="Layer_4">
+              <polygon opacity="0.45" stroke-miterlimit="10" points="
+  				0,222.7 
+            <c:forEach var="value" items="${cpu03}" varStatus="i"> ${i.index * 78},${150-(value * 2.5)}</c:forEach>
+              468,222.7	
+              "/>
+            </g>
+            <g id="Layer_3">
+              <polygon opacity="0.8" stroke-miterlimit="10" points="
+  				0,222.7 
+            <c:forEach var="value" items="${cpu01}" varStatus="i"> ${i.index * 78},${150-(value * 2.0)}</c:forEach>
+              468,222.7	
+              "/>
+            </g>
+         </g>
         </defs>
       </svg>
 <!--       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->

@@ -6,7 +6,7 @@
 <title>Home</title>
 </head>
 <body>
-	<h1>Hello</h1>
+	<h1>Help</h1>
 
 	<div class="container center-block">
 		<div class="panel panel-default col-sm-10">

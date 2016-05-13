@@ -45,6 +45,9 @@ public class ValueService {
 	public List<Value> findValueEntriesbySensor(String sensor, int firstResult, int maxResults) {
 		return valueDAO.findValueEntriesbySensor(sensor, firstResult, maxResults);
 	}
+	public List<Float> findValuebySensor(String sensor, int firstResult, int maxResults) {
+		return valueDAO.findValuebySensor(sensor, firstResult, maxResults);
+	}
 
 	public void saveValue(Value v) {
 		valueDAO.persist(v);

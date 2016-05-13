@@ -52,49 +52,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">
     <link rel="stylesheet" href="/MasterNodeServer/resources/css/material.css">
-    
-    <link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
-   <script>
-	$(function() {//code inside this function will run when the document is ready
-		//alert($('#rb_01_1').is(':checked'));
-		<c:forEach var="item" items="${valueList}">
-		$('#${item.identifier}').change(
-				function() {//do something when the user clicks the box
-
-					loadDoc('${item.identifier}', ($('#${item.identifier}')
-							.is(':checked')));
-				});
-		</c:forEach>
-	});
-	
-	function loadDoc(name, state) {
-		var date1 = performance.now();
-
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				document.getElementById("demo").innerHTML = xhttp.responseText;
-				document.getElementById("alert").style.visibility = "visible";
-
-			}
-		};
-		xhttp.open("GET", "demo_get?name=" + name + "&state=" + state, true);
-		xhttp.send();
-
-		//var date2 = performance.now();
-		//var diff = date2 - date1;
-		//var str = "doba: " + diff + "\n"
-		//alert( str );
-
-	}
-</script>
-   
   </head>
   <body>
 
@@ -105,33 +62,28 @@
         	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>       
         	<jsp:include page="/WEB-INF/views/include/menu/menu_left.jsp"></jsp:include>
         
-      </div>      
+      </div>
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
 	
 			<div class="mdl-grid">
-				<div class="">
-				<div id="alert" class="alert alert-success" style="visibility: hidden;">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>Success!</strong>
-					<p id="demo"></p>
-				</div>
-				<c:forEach var="item" items="${valueList}">
-					
-					<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="${item.identifier}">
-					  <input type="checkbox" id="${item.identifier}" class="mdl-switch__input" ${item.state ? "checked" : "" }>
-  						<span class="mdl-switch__label">${item.name}</span>
-					</label>
+			<c:forEach var="item" items="${valueList}">
+				<div class="mdl-cell mdl-cell--3-col mdl-cell--6-col-tablet" style="margin: auto; text-align: center;">
 				
+				<a href="value/?name=${item.sensor.identifier }" class="thumbnail">
+						<h6 class="" >${item.sensor.name}</h6> <img src="/MasterNodeServer/resources/img/${item.sensor.name}.png"
+						alt="${item.sensor.name}" style="width: auto; height: 60px">
+						<p class="mdl-card__supporting-text mdl-color-text--grey-600"><kbd>${item.value}${item.sensor.name == 'dht11_humidity' ? "%" : "°C" }</kbd></p>
+					</a>
 					
-				</c:forEach>
-  				</div>
+				</div>
+			</c:forEach>
+  			
 			</div>
 
           </div>
         </div>
-        
       </main>
 <!--       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>

@@ -43,9 +43,9 @@ private static final Logger logger = LoggerFactory.getLogger(HomeController.clas
 	
 	@RequestMapping(value = "/",method = RequestMethod.GET)
 	public String home(Model model) {
-		List<Value> valueList = valueService.findValueEntries(0, 3);
+		List<Value> valueList = valueService.findValueEntries(0, 7);
 			model.addAttribute("valueList", valueList);
-		return "value";
+		return "sensor/sensors";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

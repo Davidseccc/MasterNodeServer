@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.uhk.MasterNodeServer.entity.Value;
 
 @Service
-public class ValueDAO{
+public class ValueDAO {
 
 	@PersistenceContext
 
@@ -34,7 +34,9 @@ public class ValueDAO{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
 
-		List<Value> users = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id", Value.class).getResultList();
+		List<Value> users = em
+				.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id", Value.class)
+				.getResultList();
 
 		em.close();
 		return users;
@@ -55,8 +57,8 @@ public class ValueDAO{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
 
-		List<Value> v = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id ,s.name", Value.class).setFirstResult(firstResult)
-				.setMaxResults(maxResults).getResultList();
+		List<Value> v = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s ORDER BY o.date DESC, s.id ,s.name",
+				Value.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
 		em.close();
 		return v;
 	}
@@ -117,7 +119,7 @@ public class ValueDAO{
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
-		
+
 		Value merged = em.merge(v);
 		em.flush();
 
@@ -126,27 +128,46 @@ public class ValueDAO{
 		return merged;
 	}
 
-	
 	public List<Value> findValueEntriesbySensor(String sensor, int firstResult, int maxResults) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
-		EntityManager em = emf.createEntityManager(); 
+		EntityManager em = emf.createEntityManager();
 
-		
 		if (sensor == null)
 			throw new IllegalArgumentException("The Sensor argument is required");
-		TypedQuery<Value> q = em.createQuery("SELECT o FROM Value o JOIN FETCH o.sensor s WHERE s.identifier = :sensor order by o.date desc", Value.class)
-				.setFirstResult(firstResult).setMaxResults(maxResults);
-		q.setParameter("sensor", sensor);
+		
+			TypedQuery<Value> q = em.createQuery(
+					"SELECT o FROM Value o JOIN FETCH o.sensor s WHERE s.identifier = :sensor order by o.date desc",
+					Value.class).setFirstResult(firstResult).setMaxResults(maxResults);
+			q.setParameter("sensor", sensor);
 
-		List<Value> values = q.getResultList();
-		em.close();
+			List<Value> values = q.getResultList();
+			em.close();
+		
+		return values;
+	}
+	
+	public List<Float> findValuebySensor(String sensor, int firstResult, int maxResults) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
+		EntityManager em = emf.createEntityManager();
+
+		if (sensor == null)
+			throw new IllegalArgumentException("The Sensor argument is required");
+		
+			TypedQuery<Float> q = em.createQuery(
+					"SELECT o.value FROM Value o JOIN o.sensor s WHERE s.identifier = :sensor order by o.date desc",
+					Float.class).setFirstResult(firstResult).setMaxResults(maxResults);
+			q.setParameter("sensor", sensor);
+
+			List<Float> values = q.getResultList();
+			em.close();
+		
 		return values;
 	}
 
 	public TypedQuery<Value> findValuesBySensorName(String name) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu1");
-		EntityManager em = emf.createEntityManager(); 
-		
+		EntityManager em = emf.createEntityManager();
+
 		if (name == null)
 			throw new IllegalArgumentException("The Email argument is required");
 		TypedQuery<Value> q = em.createQuery("SELECT o FROM User AS o WHERE o.email = :email", Value.class);
